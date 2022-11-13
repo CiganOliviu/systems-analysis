@@ -28,18 +28,18 @@ Tosc = (t(cursor_info_index_6) - t(cursor_info_index_5)) / 0.5;
 
 Wn = 2*pi / (Tosc*sqrt(1-teta));
 Wosc = 2*pi / Tosc;
-Tr = 4/(teta*Wn);
+Tr = 4 / (teta*Wn);
 
 A = [0 1; -Wn^2 -2*teta*Wn];
 B = [0; K*Wn^2];
 C = [1 0];
 D = 0;
 
-sys = ss(A,B,C,D);
+sys = ss(A, B, C, D);
 ysim2 = lsim(sys, u, t, [y(1), 0]);
 
-plot(t,ysim2)
+plot(t, ysim2)
 
-J = sqrt(1/length(y)*sum((y-ysim2).^2));
+J = sqrt(1 / length(y) * sum((y - y_simulated) .^ 2));
 
-eMPN = norm(y-ysim2)/norm(y-mean(y));
+eMPN = norm(y - y_simulated) / norm(y - mean(y));
